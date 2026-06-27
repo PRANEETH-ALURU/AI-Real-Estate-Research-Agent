@@ -1,0 +1,56 @@
+find_location:
+  description: >
+    Find promising neighborhoods in {location} for a buyer with a budget of {budget}
+    and goal of {buyer_goal}. Research candidate neighborhoods, general description,
+    estimated price range, population growth indicators, and major employers nearby.
+    Do not repeat the same neighborhood twice.
+  expected_output: >
+    A structured list of candidate neighborhoods with neighborhood name, description,
+    price range, population growth indicator, and nearby major employers.
+  agent: Location_Researcher
+  output_file: output/json/candidate_neighborhoods.json
+
+neighborhood_analysis:
+  description: >
+    Analyze the neighborhoods found by the Location Researcher. For each neighborhood,
+    research median home price, one-year appreciation, inventory trend, average days
+    on market, and buyer demand.
+  expected_output: >
+    A structured market analysis for each neighborhood including median home price,
+    appreciation trend, inventory trend, days on market, and buyer demand.
+  agent: Neighborhood_Market_Data_Analyst
+  context:
+    - find_location
+  output_file: output/json/neighborhood_market_analysis.json
+
+neighborhood_evaluator_task:
+  description: >
+    Evaluate each neighborhood using the location research and market analysis.
+    Identify pros, cons, risks, affordability, growth potential, rental demand,
+    and overall suitability for the user's budget and goal.
+  expected_output: >
+    A final ranked evaluation of neighborhoods with pros, cons, risk factors,
+    investment suitability, and overall recommendation.
+  agent: neighborhood_evaluator
+  context:
+    - find_location
+    - neighborhood_analysis
+  output_file: output/md/final_neighborhood_recommendation.md
+
+final_recommendation:
+  description: >
+    Review the candidate neighborhoods, market analysis, and neighborhood evaluations.
+    Rank the neighborhoods for the user's budget of {budget} and goal of {buyer_goal}
+    in {location}. Recommend the best neighborhood and provide a concise explanation
+    of why it is the best fit. Include the top alternatives, trade-offs, key risks,
+    and practical next steps for the buyer. Do not guarantee investment returns.
+  expected_output: >
+    A final real estate recommendation report with a ranked list of neighborhoods,
+    a recommended top choice, reasons for the recommendation, alternatives, risks,
+    and next steps.
+  agent: real_estate_advisor
+  context:
+    - find_location
+    - neighborhood_analysis
+    - neighborhood_evaluator_task
+  output_file: output/md/final_real_estate_recommendation.md
