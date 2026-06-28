@@ -40,14 +40,29 @@ neighborhood_evaluator_task:
 final_recommendation:
   description: >
     Review the candidate neighborhoods, market analysis, and neighborhood evaluations.
-    Rank the neighborhoods for the user's budget of {budget} and goal of {buyer_goal}
-    in {location}. Recommend the best neighborhood and provide a concise explanation
-    of why it is the best fit. Include the top alternatives, trade-offs, key risks,
-    and practical next steps for the buyer. Do not guarantee investment returns.
+    Rank only the top 5 neighborhoods for the user's budget of {budget} and goal of {buyer_goal}
+    in {location}.
+
+    Very important:
+    - If a neighborhood exceeds the user's budget, mention that clearly.
+    - Do not automatically recommend the most expensive neighborhood.
+    - Recommend the best balance of affordability, growth potential, rental demand, and risk.
+    - Include an investment score out of 10.
+    - Include a confidence score.
+    - Include risk level as Low, Medium, or High.
+    - Include practical next steps.
+    - Do not guarantee investment returns.
+    If the highest-scoring neighborhood exceeds the user's budget, recommend the best neighborhood that fits or is closest to the budget unless the over-budget option has a very strong justification.
   expected_output: >
-    A final real estate recommendation report with a ranked list of neighborhoods,
-    a recommended top choice, reasons for the recommendation, alternatives, risks,
-    and next steps.
+    A polished real estate recommendation report with:
+    1. Top recommended neighborhood
+    2. Ranked top 5 neighborhoods
+    3. Investment score for each
+    4. Budget fit
+    5. Risk level
+    6. Pros and cons
+    7. Final recommendation summary
+    8. Practical next steps
   agent: real_estate_advisor
   context:
     - find_location

@@ -42,6 +42,27 @@ class NeighborhoodEvaluator(BaseModel):
 class NeighborhoodEvaluatorList(BaseModel):
     neighborhood: List[NeighborhoodEvaluator] = Field(description="The list of neighborhood pros, cons and summary")
     
+class FinalNeighborhoodRecommendation(BaseModel):
+    neighborhood_name: str = Field(description="Name of the neighborhood")
+    median_home_price: str = Field(description="Median home price")
+    budget_fit: str = Field(description="Whether the neighborhood fits the user's budget")
+    investment_score: float = Field(description="Investment score out of 10")
+    risk_level: str = Field(description="Risk level: Low, Medium, or High")
+    confidence_score: str = Field(description="Confidence score for this recommendation")
+    pros: List[str] = Field(description="Main advantages of this neighborhood")
+    cons: List[str] = Field(description="Main disadvantages or risks")
+    reason_for_ranking: str = Field(description="Why this neighborhood received this ranking")
+
+
+class FinalRealEstateRecommendation(BaseModel):
+    recommended_neighborhood: str = Field(description="Best recommended neighborhood")
+    recommendation_summary: str = Field(description="Short final recommendation summary")
+    ranked_neighborhoods: List[FinalNeighborhoodRecommendation] = Field(
+        description="Ranked list of top neighborhoods"
+    )
+    key_risks: List[str] = Field(description="Main risks the buyer should consider")
+    next_steps: List[str] = Field(description="Practical next steps for the buyer")
+
 
 @CrewBase
 class RealEstate():
@@ -102,8 +123,9 @@ class RealEstate():
     def final_recommendation(self) -> Task:
         return Task(
             config=self.tasks_config["final_recommendation"],
+            output_pydantic=FinalRealEstateRecommendation,
         )
-        
+            
     
     @crew
     def crew(self) -> Crew:
