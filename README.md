@@ -1,76 +1,104 @@
-# RealEstateAiAgent Crew
+# AI Real Estate Research Agent
 
-Welcome to the RealEstateAiAgent Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This project is a multi-agent AI application built using CrewAI that helps users identify promising neighborhoods for purchasing a home or investment property.
+
+Given a location, budget, and buyer goal, the system performs live web research, analyzes real estate market trends, evaluates neighborhoods, and recommends the best options based on affordability, growth potential, and investment value.
+
+## Features
+
+- Multi-agent workflow using CrewAI
+- Live web search with Serper API
+- Streamlit web interface
+- Neighborhood market analysis
+- Investment scoring and ranking
+- Budget-aware recommendations
+- Downloadable recommendation report
+
+## Tech Stack
+
+- Python
+- CrewAI
+- OpenAI GPT-4o Mini
+- Serper API
+- Streamlit
+- Pydantic
+
+## Screenshots
+
+### Home Page
+
+![Home Page](assets/home_page.png)
+
+### Candidate Neighborhoods
+
+![Candidate Neighborhoods](assets/candidate_neighbors.png)
+
+### Neighborhood Analysis
+
+![Neighborhood Analysis](assets/neighbor_description.png)
+
+### Final Recommendation
+
+![Final Recommendation](assets/risks_nextsteps_downloadreport.png)
 
 ## Installation
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
-
-First, if you haven't already, install uv:
+Clone the repository
 
 ```bash
-pip install uv
+git clone git@github.com:PRANEETH-ALURU/AI-Real-Estate-Research-Agent.git
 ```
 
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/real_estate_ai_agent/config/agents.yaml` to define your agents
-- Modify `src/real_estate_ai_agent/config/tasks.yaml` to define your tasks
-- Modify `src/real_estate_ai_agent/crew.py` to add your own logic, tools and specific args
-- Modify `src/real_estate_ai_agent/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+Move into the project
 
 ```bash
-$ crewai run
+cd AI-Real-Estate-Research-Agent
 ```
 
-This command initializes the real_estate_ai_agent Crew, assembling the agents and assigning them tasks as defined in your configuration.
+Install dependencies
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-## Outputs
-## Application
+```bash
+uv sync
+```
 
-![Home Page](Assets/home_page.png)
+Create a `.env` file in the project root.
 
----
+```text
+OPENAI_API_KEY=your_openai_api_key
+SERPER_API_KEY=your_serper_api_key
+```
 
+## Run the Application
 
-![AI Analysis Outputs](Assets/results1.png)
+Launch the Streamlit application:
 
----
+```bash
+uv run streamlit run src/real_estate_ai_agent/app.py
+```
 
-!(Assets/results2.png)
+Then open the URL displayed in the terminal (usually http://localhost:8501).
 
----
+## Project Structure
 
-!(Assets/assets/results3.png)
+```
+AI-Real-Estate-Research-Agent/
+│
+├── assets/
+├── config/
+├── src/
+├── output/
+├── pyproject.toml
+└── README.md
+```
 
----
+## Future Improvements
 
-## Final Recommendation
+- Interactive map visualization
+- Rental yield estimation
+- Crime and school rating analysis
+- Property listing integration
+- PDF report generation
 
-![Final Recommendation](assets/final_recommendation.png)
-## Understanding Your Crew
+## Author
 
-The real_estate_ai_agent Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the RealEstateAiAgent Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+Praneeth Aluru
