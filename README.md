@@ -27,19 +27,19 @@ Given a location, budget, and buyer goal, the system performs live web research,
 
 ### Home Page
 
-![Home Page](assets/home_page.png)
+![Home Page](output_screenshots/home_page.png)
 
 ### Candidate Neighborhoods
 
-![Candidate Neighborhoods](assets/candidate_neighbors.png)
+![Candidate Neighborhoods](output_screenshots/candidate_neighbors.png)
 
 ### Neighborhood Analysis
 
-![Neighborhood Analysis](assets/neighbor_description.png)
+![Neighborhood Analysis](output_screenshots/neighbor_description.png)
 
 ### Final Recommendation
 
-![Final Recommendation](assets/risks_nextsteps_downloadreport.png)
+![Final Recommendation](output_screenshots/risks_nextsteps_downloadreport.png)
 
 ## Installation
 
