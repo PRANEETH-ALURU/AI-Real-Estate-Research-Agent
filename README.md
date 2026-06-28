@@ -38,7 +38,29 @@ $ crewai run
 This command initializes the real_estate_ai_agent Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
 This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+## Outputs
+## Application
 
+![Home Page](Assets/home_page.png)
+
+---
+
+
+![AI Analysis Outputs](Assets/results1.png)
+
+---
+
+!(Assets/results2.png)
+
+---
+
+!(Assets/assets/results3.png)
+
+---
+
+## Final Recommendation
+
+![Final Recommendation](assets/final_recommendation.png)
 ## Understanding Your Crew
 
 The real_estate_ai_agent Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
